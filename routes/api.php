@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,11 +11,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Public API routes
-Route::get('/hello', function () {
-    return response()->json([
-        'message' => 'Hello from API',
-    ]);
-});
+Route::get('/hello', [ UserController::class, 'index']);
 
 // Example of a simple GET route
 Route::get('/status', function () {
