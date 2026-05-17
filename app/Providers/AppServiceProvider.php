@@ -11,7 +11,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Bind the UserInterface to UserService for dependency injection
+        $this->app->bind(
+            \App\Interfaces\UserInterface::class,
+            \App\Services\UserService::class
+        );
     }
 
     /**

@@ -3,7 +3,9 @@ declare (strict_types=1);
 
 namespace App\Services;
 
-class UserService
+use App\Interfaces\UserInterface;
+
+class UserService implements UserInterface
 {
     public function getUserData(): array
     {
