@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +15,11 @@ class AppServiceProvider extends ServiceProvider
         // Bind the UserInterface to UserService for dependency injection
         $this->app->bind(
             \App\Interfaces\UserInterface::class,
-            \App\Services\UserService::class
+            function ($app) {
+                return $app->make(UserService::class,[
+                    'config' => 123, // You can pass any configuration value here
+                ]);
+            }
         );
     }
 
@@ -22,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
+    { 
         //
     }
 }
